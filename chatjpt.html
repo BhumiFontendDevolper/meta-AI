@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chatGPT</title>
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+<style>
+    body{
+        background-image: url('https://i.pinimg.com/736x/8c/98/99/8c98994518b575bfd8c949e91d20548b.jpg');
+        background-size: cover;
+        width:100%;
+        height: 100vh;
+    }
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        
+    }
+    header{
+        display: flex;
+        justify-content: space-between;
+   
+    position: sticky;
+    top: 0;
+    background-color: white;
+    }
+    div.chat-header-1{
+        display: flex;
+        align-items: center;
+       gap: 0.3rem;
+        & img{
+            width: 70px;
+            height: 70px;
+            mix-blend-mode: multiply;
+        }
+        & i:nth-of-type(1){
+            font-size: 2rem;
+            margin-right: 2rem;
+        }
+        & i:nth-child(4){
+            font-size: 1.5rem;
+        background-color: white;
+        color: blue;
+        border-radius: 100%;
+        }
+
+        h1::after{
+content: 'with LIama 3.2';
+font-size: 10px;
+position: absolute;
+font-weight: 400;
+bottom: 0;
+width:100px;
+left:0;
+
+        }
+       
+    }
+    div.chat-header-2{
+        & i{
+            font-size: 2rem;
+           line-height: 4rem;
+           margin-inline: 1rem;
+        }
+    }
+    section{
+        background-image: url('https://i.pinimg.com/736x/8c/98/99/8c98994518b575bfd8c949e91d20548b.jpg');
+    background-size: contain;
+    width: 100%;
+    height: 100vh;
+    overflow-y: scroll;
+    }
+    footer{
+        display: flex;
+        border-radius: 50px;
+        padding: 0.5rem;
+        gap:1rem;
+        justify-content: space-between;
+        position: sticky;
+        bottom: 0;
+        background-color: white;
+        & input{
+            padding: 1.5rem;
+            border-radius: 50px;
+            border: none;
+            box-shadow: 0px 0px 2px 1px gray;
+            width: 100%;
+        }
+        & input:focus{
+            caret-color: gray;
+           caret-shape: bar;
+            font-size: 2rem;
+        }
+        & i{
+            background-color: rgb(80, 171, 103);
+            color: white;
+            font-size: 2rem;
+            border-radius: 100%;
+            padding: 1rem;
+            cursor: pointer;
+        }
+        & input::placeholder{
+            font-size:1.5rem;
+            color: grey;
+            text-transform: capitalize;
+            padding: 10px;
+            
+        }
+        & button{
+            border: none;
+           border-radius: 100%;
+           cursor: pointer;
+        }
+    }
+    div.meta-indrodiuction{
+display: flex;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+padding: 1rem;
+& img{
+   width:150px;
+   height: 150px;
+   border-radius: 100%;
+
+}
+& h1{
+    font-size: 2.5rem;
+    & i{
+        font-size: 2rem;
+        background-color: white;
+        color: blue;
+        border-radius: 100%;  
+    }
+}
+& span{
+    font-weight: 900;
+    font-size: 1rem;
+    & i{
+        font-size: 1rem;
+    }
+}
+& p{
+    text-transform: capitalize;
+    & a{
+        text-decoration: none;
+        
+    }
+}
+    }
+    div.user-chat-container{
+        display: flex;
+        justify-content: start;
+        align-items: start;
+        gap:1rem;
+        width:500px;
+        background-color: white;
+        margin: 1rem;
+        border-radius: 20px;
+        padding: 1rem;
+        object-fit: cover;
+        & img{
+            width: 150px;
+            height: 150px;
+            border-radius: 100%;
+
+        }
+        & p{
+            text-transform: capitalize;
+        }
+
+    }
+    div.user-chat{
+        display: flex;
+    justify-content: end;
+    }
+
+    div.meta-chat-container{
+        display: flex;
+        justify-content: start;
+        align-items: start;
+        gap:12px;
+        width:500px;
+        background-color: white;
+        margin: 1rem;
+        border-radius: 20px;
+        text-transform: capitalize;
+        padding: 1.2rem;
+        & img{
+            width: 150px;
+            height: 150px;
+            border-radius: 100%;
+
+        }
+
+    }
+    div.meta-chat{
+        display: flex;
+    justify-content: start;
+    }
+    section::-webkit-scrollbar{
+        display: none;
+    }
+
+
+    div.input-buttons{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 1rem;
+        gap:1rem;
+        & div{
+font-size: 1rem;
+text-transform: capitalize;
+padding: 1rem;
+background-color:rgb(248, 248, 248);
+border: 2px solid gray;
+border-radius: 50px;
+cursor: pointer;
+transition: all 0.3s ease-in-out;
+        }
+        & div:hover{
+           background: linear-gradient(to right,blue,rgb(211, 64, 224));
+            border-color: black;
+            color: white;
+            font-size: 1.3rem;
+        }
+    }
+
+</style>
+</head>
+<body>
+    <main>
+        <header>
+<div class="chat-header-1">
+    <i class="ri-arrow-left-s-line"></i>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvE7wuAvH-l6-rdxG14hlBepdS0ozyrjV7vQ&s" alt="">
+    <h1 style="position: relative; padding-bottom: 10px;">Meta AI
+
+    </h1>
+    <i class="ri-verified-badge-fill"></i>
+
+</div>
+<div class="chat-header-2">
+  <i class="ri-error-warning-line"></i>
+</div>
+        </header>
+        <section>
+           <div class="meta-indrodiuction">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvE7wuAvH-l6-rdxG14hlBepdS0ozyrjV7vQ&s" alt="">
+            <h1> Meta AI <i class="ri-verified-badge-fill"></i></h1>
+            <span>AI <i class="ri-bard-fill"></i></span>
+            <p>messeages are generated by meta ai. some may be inaccurate or appropiate. <a href="http://" target="_blank" rel="noopener noreferrer">learn more</a></p>
+           </div>
+           <div class="input-buttons">
+            <div>yoga tips for beginners</div>
+            <div>Tips for long road trips</div>
+            <div>help me in coding</div>
+            <div>manage work-life balence</div>
+            <div>inspire me to work out</div>
+            <div>solo travel benifites</div>
+            <div>give a recipe for omlet</div>
+            <div>help me sing better</div>
+            <div>help me buy a car online</div>
+           </div>
+           <div class="user-chat">
+           
+          
+           </div>
+           <div class="meta-chat">
+          
+        </section>
+        <footer>
+<input type="text" placeholder="Ask me anything"> 
+<button id="microphone"><i class="ri-mic-fill"></i></button>
+<button id="messege_sendind"><i class="ri-send-plane-fill"></i></button>
+        </footer>
+    </main>
+</body>
+<script>
+    let user_input=document.querySelector('input');
+    let button=document.querySelector('#messege_sendind');
+   let section=document.querySelector('section')
+
+    let api='https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyDobQnI3HjndZHRTamVK8Luus_pMQVrC0k'
+    let api_key='AIzaSyDobQnI3HjndZHRTamVK8Luus_pMQVrC0k'
+
+
+
+    let meta_prompt=(meta_generated_responce)=>{
+    const meta_chat_container=document.createElement('div')
+const meta_chat=document.createElement('div')
+meta_chat.innerHTML=`
+<img src="https://pics.craiyon.com/2023-10-13/7e52510b8fa1430ba69a5f1d3608df6d.webp" alt="">
+<p>${meta_generated_responce}</P>`
+    meta_chat_container.classList.add('meta-chat')
+   meta_chat.classList.add('meta-chat-container')
+    meta_chat_container.innerHTML=meta_chat.outerHTML;
+    section.appendChild(meta_chat_container)
+}
+const chatloading=()=>{
+    let  loadingcontainer=document.createElement('div')
+    let load_chat=document.createElement('div')
+load_chat.innerHTML=`<img src="https://pics.craiyon.com/2023-10-13/7e52510b8fa1430ba69a5f1d3608df6d.webp" alt="">
+<img src="https://cdn.pixabay.com/animation/2022/07/29/03/42/03-42-05-37_512.gif" alt="">`
+    loadingcontainer.classList.add('meta-chat')
+   load_chat.classList.add('meta-chat-container')
+   loadingcontainer.innerHTML=load_chat.outerHTML;
+   section.appendChild(loadingcontainer);
+   return loadingcontainer;
+}
+
+
+    let responce_fatching= async (user_input)=>{ 
+        
+        let loader=chatloading();
+        try{
+let responce= await fetch(api,{
+    method:'post',
+    headers:{'Content-Type': 'application/json'},
+    body:JSON.stringify({
+        contents:[{"role":"user",
+                  "parts":[{"text":`${user_input}`}]}]
+        
+    }) 
+    
+})
+let data= await responce.json();
+let meta_generated_responce=data.candidates[0].content.parts[0].text;
+
+    let showloading=setTimeout(()=>{
+section.removeChild(loader)
+        },600);
+        
+meta_generated_responce=meta_generated_responce.replaceAll('*','')
+meta_prompt(meta_generated_responce);
+
+
+}
+catch(error){
+console.log(error)
+}   
+    }
+
+
+
+let user_promt=(input_value)=>{
+    const user_chat_container=document.createElement('div')
+const user_chat=document.createElement('div')
+user_chat.innerHTML=`<img src="userprofile.jpg" alt="">
+<p>${input_value}</P>`
+    user_chat_container.classList.add('user-chat')
+    user_chat.classList.add('user-chat-container')
+    user_chat_container.innerHTML=user_chat.outerHTML;
+    section.appendChild(user_chat_container)
+    responce_fatching(input_value)
+
+}
+
+
+button.addEventListener('click',function(){
+    const input_value=user_input.value
+    user_promt(input_value)
+   user_input.value=''
+})
+
+let input_buttons=document.querySelector('.input-buttons')
+input_buttons.addEventListener('click',(e)=>{
+    const value=e.target.innerHTML;
+    user_promt(value);
+    
+
+
+})
+
+let microphone=document.querySelector('#microphone')
+
+let my_voice=new window.webkitSpeechRecognition;
+    
+    my_voice.onresult=(event)=>{
+       let transcript=(event.results[0][0].transcript);
+    user_promt(transcript)
+    }
+   
+    microphone.addEventListener('click',()=>{
+ my_voice.start()
+    })
+</script>
+</html>
